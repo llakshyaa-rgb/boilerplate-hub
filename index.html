@@ -100,20 +100,23 @@
 
     <!-- Application Database and Logic -->
     <script>
-        // Core data structure containing 15 real baseline setups.
+    
         // To easily expand this to 50 items, look at the loop block below which generates variations dynamically!
+                // Core data structure containing 10 real baseline setups with ACTUAL URLs.
         const baseBoilerplates = [
-            { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, database mapping, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB", "AI"], timeSaved: "40+ hours", url: "#" },
-            { id: "2", name: "Supastarter", price: 249, upvotes: 98, description: "A high-performance SaaS foundation supporting Next.js architectures. Includes robust multi-tenancy configurations out of the box.", tags: ["Next.js", "Supabase", "Stripe"], timeSaved: "35 hours", url: "#" },
-            { id: "3", name: "SaaS Pegasus", price: 295, upvotes: 114, description: "The standard for production Python deployments. Thoroughly optimized Django components ready for distribution configurations.", tags: ["Django", "Python", "PostgreSQL"], timeSaved: "50+ hours", url: "#" },
-            { id: "4", name: "Makerkit", price: 249, upvotes: 76, description: "An enterprise-grade template tailored for Firebase integrations alongside prebuilt subscription flows.", tags: ["Next.js", "Firebase", "Stripe"], timeSaved: "30 hours", url: "#" },
-            { id: "5", name: "Larafast", price: 149, upvotes: 89, description: "Accelerated application development workspace utilizing native Laravel tools alongside Vue view layers.", tags: ["Laravel", "Vue", "Stripe", "AI"], timeSaved: "25 hours", url: "#" },
-            { id: "6", name: "Bullet Train", price: 449, upvotes: 53, description: "A premium Ruby on Rails framework optimization providing comprehensive business-in-a-box assets.", tags: ["Ruby on Rails", "PostgreSQL"], timeSaved: "60 hours", url: "#" },
-            { id: "7", name: "Divjoy", price: 169, upvotes: 67, description: "Visual workspace application generator that outputs cleanly structured component structures based on your selected platform configuration.", tags: ["React", "Firebase"], timeSaved: "20 hours", url: "#" },
-            { id: "8", name: "Gravity", price: 349, upvotes: 82, description: "Comprehensive architectural framework covering complex configurations inside standard Node environments.", tags: ["Node.js", "React", "PostgreSQL"], timeSaved: "45 hours", url: "#" },
-            { id: "9", name: "Jumpstart", price: 249, upvotes: 61, description: "Sleek and modular structural patterns helping you map custom payment workflows instantly inside Rails projects.", tags: ["Ruby on Rails", "Stripe"], timeSaved: "35 hours", url: "#" },
-            { id: "10", name: "Nextless", price: 199, upvotes: 45, description: "Serverless backend systems cleanly integrated inside a structured Next.js configuration.", tags: ["Next.js", "AWS", "Serverless"], timeSaved: "40 hours", url: "#" }
+            { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, database mapping, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB", "AI"], timeSaved: "40+ hours", url: "https://shipfa.st/?via=YOUR_AFFILIATE_ID" },
+            { id: "2", name: "Supastarter", price: 249, upvotes: 98, description: "A high-performance SaaS foundation supporting Next.js architectures. Includes robust multi-tenancy configurations out of the box.", tags: ["Next.js", "Supabase", "Stripe"], timeSaved: "35 hours", url: "https://supastarter.dev/?ref=YOUR_AFFILIATE_ID" },
+            { id: "3", name: "SaaS Pegasus", price: 295, upvotes: 114, description: "The standard for production Python deployments. Thoroughly optimized Django components ready for distribution configurations.", tags: ["Django", "Python", "PostgreSQL"], timeSaved: "50+ hours", url: "https://www.saaspegasus.com/" },
+            { id: "4", name: "Makerkit", price: 249, upvotes: 76, description: "An enterprise-grade template tailored for Firebase integrations alongside prebuilt subscription flows.", tags: ["Next.js", "Firebase", "Stripe"], timeSaved: "30 hours", url: "https://makerkit.dev/" },
+            { id: "5", name: "Larafast", price: 149, upvotes: 89, description: "Accelerated application development workspace utilizing native Laravel tools alongside Vue view layers.", tags: ["Laravel", "Vue", "Stripe", "AI"], timeSaved: "25 hours", url: "https://larafast.com/" },
+            { id: "6", name: "Bullet Train", price: 449, upvotes: 53, description: "A premium Ruby on Rails framework optimization providing comprehensive business-in-a-box assets.", tags: ["Ruby on Rails", "PostgreSQL"], timeSaved: "60 hours", url: "https://bullettrain.co/" },
+            { id: "7", name: "Divjoy", price: 169, upvotes: 67, description: "Visual workspace application generator that outputs cleanly structured component structures based on your selected platform configuration.", tags: ["React", "Firebase"], timeSaved: "20 hours", url: "https://divjoy.com/" },
+            { id: "8", name: "Gravity", price: 349, upvotes: 82, description: "Comprehensive architectural framework covering complex configurations inside standard Node environments.", tags: ["Node.js", "React", "PostgreSQL"], timeSaved: "45 hours", url: "https://usegravity.app/" },
+            { id: "9", name: "Jumpstart", price: 249, upvotes: 61, description: "Sleek and modular structural patterns helping you map custom payment workflows instantly inside Rails projects.", tags: ["Ruby on Rails", "Stripe"], timeSaved: "35 hours", url: "https://jumpstartrails.com/" },
+            { id: "10", name: "Nextless", price: 199, upvotes: 45, description: "Serverless backend systems cleanly integrated inside a structured Next.js configuration.", tags: ["Next.js", "AWS", "Serverless"], timeSaved: "40 hours", url: "https://nextlessjs.com/" }
         ];
+        
+        
 
         // AUTO-GENERATION ENGINE: Fills the array cleanly to reach a massive directory list
         const boilerplates = [...baseBoilerplates];
@@ -133,7 +136,7 @@
                 description: `A highly scalable, production-tested boilerplate environment optimizing components for ${f} infrastructures with built-in ${s} support.`,
                 tags: [f, s, ...aiTag],
                 timeSaved: `${Math.floor(Math.random() * 30) + 15} hours`,
-                url: "#"
+                url: "https://google.com/search?q=" + encodeURIComponent(f + " boilerplate")
             });
         }
 
