@@ -4,105 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaaS Hub - Premium Boilerplates Directory</title>
-    <meta name="description" content="Skip weeks of setup. Compare the best 70+ SaaS boilerplates, starter kits, and UI templates to launch your startup at lightspeed.">
-    <meta property="og:title" content="SaaS Hub - Launch Your Startup Fast">
-    <meta property="og:description" content="The ultimate directory of production-ready SaaS boilerplates. Find your perfect stack today.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop">
-    <meta name="twitter:card" content="summary_large_image">
-
+    <meta name="description" content="Compare the best SaaS boilerplates, starter kits, and UI templates to launch your startup at lightspeed.">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        body { background-color: #050507; color: #f3f4f6; padding-bottom: 80px; }
+        
+        :root { --primary: #22d3ee; --primary-glow: rgba(34,211,238,0.5); --bg-color: #050507; --card-bg: #111827; }
+        body.matrix-theme { --primary: #22c55e; --primary-glow: rgba(34,197,94,0.5); --bg-color: #000000; --card-bg: #052e16; }
+        
+        body { background-color: var(--bg-color); color: #f3f4f6; padding-bottom: 80px; transition: background-color 0.3s; }
+        .theme-text { color: var(--primary); }
+        .theme-border { border-color: var(--primary); }
+        .theme-bg { background-color: var(--primary); }
+        .theme-shadow { box-shadow: 0 0 15px var(--primary-glow); }
+        
         .bg-grid { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); }
+        body.matrix-theme .bg-grid { background-image: linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px); }
     </style>
 </head>
-<body class="font-sans min-h-screen bg-grid selection:bg-cyan-500 selection:text-black relative">
+<body class="font-sans min-h-screen bg-grid relative">
 
-    <nav class="border-b border-gray-900 bg-black/60 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+    <nav class="border-b border-gray-900 bg-black/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-                SAAS.HUB
+            <div class="text-2xl font-black tracking-wider text-white">
+                SAAS.<span class="theme-text">HUB</span>
             </div>
             <div class="flex items-center gap-3">
-                <select id="sortSelect" class="hidden md:block bg-gray-900 border border-gray-800 text-gray-300 text-xs rounded-lg px-2 py-2 focus:outline-none focus:border-cyan-500">
+                <button onclick="toggleTheme()" class="text-xl opacity-70 hover:opacity-100 transition-opacity" title="Toggle Matrix Theme">🕶️</button>
+                <button id="showSavedBtn" onclick="toggleSaved()" class="bg-gray-900 border border-gray-800 text-gray-300 text-xs rounded-lg px-3 py-2 hover:border-gray-600 transition-all">⭐ Saved (<span id="savedCount">0</span>)</button>
+                <select id="sortSelect" class="hidden md:block bg-gray-900 border border-gray-800 text-gray-300 text-xs rounded-lg px-2 py-2 focus:outline-none focus:border-gray-500">
                     <option value="default">Sort: Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
                 </select>
-                <a href="mailto:hello@example.com?subject=SaaS Hub - Submit Tool" class="bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 text-xs font-bold px-4 py-2 rounded-lg transition-all tracking-wide">
-                    + SUBMIT TOOL
-                </a>
             </div>
         </div>
     </nav>
 
-        <header class="relative py-16 md:py-20 px-6 text-center border-b border-gray-900 bg-black/40">
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <header class="relative py-16 px-6 text-center border-b border-gray-900 bg-black/40">
         <div class="max-w-4xl mx-auto relative z-10">
-            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white">
-                Launch Your SaaS <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">At Lightspeed</span>
-            </h1>
-            <p class="text-base md:text-lg text-gray-400 mb-8 max-w-xl mx-auto">
-                Skip weeks of setup. Compare and find the ultimate codebase template for your startup.
+            <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white">Launch Your SaaS <span class="theme-text">At Lightspeed</span></h1>
+            <p class="text-base text-gray-400 mb-6 max-w-xl mx-auto flex items-center justify-center gap-2">
+                Find the ultimate codebase template. <span class="hidden md:inline-block bg-gray-800 text-[10px] px-2 py-1 rounded font-mono border border-gray-700">Press '/' to search</span>
             </p>
-            
-            <div class="relative max-w-lg mx-auto mb-6">
-                <input type="text" id="searchInput" placeholder="Search frameworks, features, or names..." class="w-full px-5 py-3.5 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all shadow-2xl text-sm">
+            <div class="relative max-w-lg mx-auto mb-6 flex gap-2">
+                <input type="text" id="searchInput" placeholder="Search frameworks, features..." class="w-full px-5 py-3 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none theme-border transition-all text-sm">
+                <button onclick="randomTool()" class="bg-gray-900 border border-gray-800 px-4 rounded-xl hover:bg-gray-800 transition-all text-xl" title="Feeling Lucky?">🎲</button>
             </div>
-
-            <div class="max-w-lg mx-auto mb-8 bg-gray-900/50 p-4 rounded-xl border border-gray-800/50 backdrop-blur-sm flex flex-col gap-3">
+            <div class="max-w-lg mx-auto mb-6 bg-gray-900/50 p-4 rounded-xl border border-gray-800 flex flex-col gap-3">
                 <div class="flex justify-between items-center">
                     <span class="text-xs font-mono text-gray-400 tracking-widest">PRICE LIMIT</span>
-                    <span class="text-xs font-mono text-cyan-400 font-bold bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-md shadow-[0_0_10px_rgba(34,211,238,0.1)]">MAX: $<span id="budgetValue">500</span></span>
+                    <span class="text-xs font-mono theme-text font-bold bg-gray-950 border border-gray-800 px-3 py-1 rounded-md">MAX: $<span id="budgetValue">500</span></span>
                 </div>
-                <input type="range" id="budgetRange" min="0" max="500" value="500" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500 hover:accent-cyan-400 transition-all">
+                <input type="range" id="budgetRange" min="0" max="500" value="500" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer">
             </div>
-
             <div class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto" id="filterContainer">
-                <button class="filter-btn active bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="all">ALL</button>
-                <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="Next.js">NEXT.JS</button>
-                <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="Laravel">LARAVEL</button>
-                <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="Stripe">STRIPE</button>
-                <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="AI">AI-READY</button>
+                <button class="filter-btn active bg-gray-800 text-white text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="all">ALL</button>
+                <button class="filter-btn bg-gray-900 text-gray-400 border border-gray-800 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="Next.js">NEXT.JS</button>
+                <button class="filter-btn bg-gray-900 text-gray-400 border border-gray-800 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="Laravel">LARAVEL</button>
+                <button class="filter-btn bg-gray-900 text-gray-400 border border-gray-800 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="Stripe">STRIPE</button>
             </div>
+            <button onclick="openMatchmaker()" class="mt-8 theme-bg text-black font-black text-sm px-6 py-3 rounded-full theme-shadow hover:scale-105 transition-all uppercase tracking-wide">🤖 Help Me Choose</button>
         </div>
-        </header>
+    </header>
 
-    <main class="max-w-7xl mx-auto p-6 md:p-10">
+    <main class="max-w-7xl mx-auto p-6 md:p-10 relative">
+        <div id="dealOfTheDay" class="mb-8"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="directory-grid"></div>
-        <div id="no-results" class="hidden text-center py-20">
-            <p class="text-xl text-purple-400 font-bold">System Offline</p>
-            <p class="text-gray-500 text-sm mt-1">No tools matching your query were found.</p>
-        </div>
+        <div id="no-results" class="hidden text-center py-20"><p class="text-xl theme-text font-bold">System Offline</p></div>
     </main>
 
-    <div id="quickViewModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-gray-950 border border-gray-800 w-full max-w-lg rounded-2xl overflow-hidden p-6 relative animate-fade-in shadow-[0_0_50px_rgba(0,0,0,0.8)]">
-            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-xl">&times;</button>
+    <section class="border-t border-gray-900 bg-gray-950 py-16 px-6 text-center">
+        <div class="max-w-lg mx-auto">
+            <h3 class="text-2xl font-bold text-white mb-2">Never miss a new codebase.</h3>
+            <form action="#" method="POST" class="flex gap-2 max-w-md mx-auto mt-6">
+                <input type="email" placeholder="founder@startup.com" class="flex-grow px-4 py-3 rounded-lg bg-gray-900 border border-gray-800 text-white focus:outline-none theme-border text-sm" required>
+                <button type="submit" class="bg-white text-black font-bold px-6 py-3 rounded-lg hover:bg-gray-200 transition-all text-sm">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="compareBar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-gray-900 border theme-border theme-shadow rounded-full px-5 py-3 z-50 justify-between items-center transition-all animate-fade-in">
+        <span class="text-white text-xs font-bold"><span id="compareCount" class="theme-text font-mono text-base pr-1">0</span> Selected</span>
+        <div class="flex gap-3 items-center">
+            <button onclick="clearCompare()" class="text-gray-500 hover:text-white text-[10px] uppercase underline">Clear</button>
+            <button onclick="openCompare()" class="theme-bg text-black px-4 py-1.5 rounded-full text-xs font-black transition-all">COMPARE</button>
+        </div>
+    </div>
+
+    <div id="universalModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center p-4 hidden">
+        <div class="bg-gray-950 border border-gray-800 w-full max-w-xl rounded-2xl overflow-y-auto max-h-[90vh] p-6 relative animate-fade-in shadow-[0_0_50px_rgba(0,0,0,1)]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-xl">&times;</button>
             <div id="modalContent"></div>
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 w-full bg-gradient-to-r from-purple-900 via-indigo-900 to-cyan-900 border-t border-cyan-500/30 shadow-[0_-10px_40px_rgba(34,211,238,0.15)] z-40 px-4 py-3 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-3">
-        <div>
-            <span class="bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-widest mr-2">Top Pick</span>
-            <span class="text-white font-bold text-sm">Launch in days, not weeks.</span>
-            <span class="text-cyan-200 text-sm ml-1">Get $50 off ShipFast today.</span>
-        </div>
-        <a href="https://shipfa.st/" target="_blank" class="bg-cyan-400 hover:bg-cyan-300 text-black text-xs font-black px-6 py-2 rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all uppercase tracking-wide w-full md:w-auto">
-            Claim Deal ➔
-        </a>
-    </div>
-
     <script>
         const boilerplates = [
-            { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, MongoDB, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB", "AI"], timeSaved: "40+ hours", url: "https://shipfa.st/" },
+            { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, MongoDB, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB"], timeSaved: "40+ hours", url: "https://shipfa.st/" },
             { id: "2", name: "Supastarter", price: 249, upvotes: 98, description: "A high-performance SaaS foundation supporting Next.js architectures. Includes robust multi-tenancy configurations.", tags: ["Next.js", "Supabase", "Stripe"], timeSaved: "35 hours", url: "https://supastarter.dev/" },
             { id: "3", name: "SaaS Pegasus", price: 295, upvotes: 114, description: "The standard for production Python deployments. Thoroughly optimized Django components.", tags: ["Django", "Python", "PostgreSQL"], timeSaved: "50+ hours", url: "https://www.saaspegasus.com/" },
             { id: "4", name: "Makerkit", price: 249, upvotes: 76, description: "An enterprise-grade template tailored for Firebase & Supabase integrations alongside prebuilt subscription flows.", tags: ["Next.js", "Firebase", "Stripe"], timeSaved: "30 hours", url: "https://makerkit.dev/" },
-            { id: "5", name: "Larafast", price: 149, upvotes: 89, description: "Accelerated application development workspace utilizing native Laravel tools alongside Vue view layers.", tags: ["Laravel", "Vue", "Stripe", "AI"], timeSaved: "25 hours", url: "https://larafast.com/" },
+            { id: "5", name: "Larafast", price: 149, upvotes: 89, description: "Accelerated application development workspace utilizing native Laravel tools alongside Vue view layers.", tags: ["Laravel", "Vue", "Stripe"], timeSaved: "25 hours", url: "https://larafast.com/" },
             { id: "6", name: "Bullet Train", price: 449, upvotes: 53, description: "A premium Ruby on Rails framework optimization providing comprehensive business-in-a-box assets.", tags: ["Ruby on Rails", "PostgreSQL"], timeSaved: "60 hours", url: "https://bullettrain.co/" },
             { id: "7", name: "Divjoy", price: 169, upvotes: 67, description: "Visual workspace application generator that outputs cleanly structured component codebases.", tags: ["React", "Firebase"], timeSaved: "20 hours", url: "https://divjoy.com/" },
             { id: "8", name: "Gravity", price: 349, upvotes: 82, description: "Comprehensive architectural framework covering complex configurations inside Node environments.", tags: ["Node.js", "React", "PostgreSQL"], timeSaved: "45 hours", url: "https://usegravity.app/" },
@@ -170,30 +174,51 @@
             { id: "70", name: "Rust Actix Web", price: 0, upvotes: 82, description: "Ultra-high performance Rust backend template paired with a Yew frontend.", tags: ["Rust", "WebAssembly", "Open Source"], timeSaved: "35 hours", url: "https://actix.rs/" }
         ];
 
-                // State Tracking variables
-        let activeFilter = 'all';
+                let activeFilter = 'all';
         let searchQuery = '';
         let currentSort = 'default';
-        let currentBudget = 500; // NEW: Tracks the slider value
+        let currentBudget = 500;
+        let compareList = [];
+        let showingSavedOnly = false;
         
         let userUpvotes = [];
-        try {
-            userUpvotes = JSON.parse(localStorage.getItem('hub_upvotes'));
-            if (!Array.isArray(userUpvotes)) userUpvotes = [];
-        } catch(e) {
-            userUpvotes = [];
-        }
+        let userSaved = [];
+        try { 
+            userUpvotes = JSON.parse(localStorage.getItem('hub_upvotes')) || []; 
+            userSaved = JSON.parse(localStorage.getItem('hub_saved')) || []; 
+        } catch(e) { }
 
         const grid = document.getElementById('directory-grid');
         const noResults = document.getElementById('no-results');
+        const modal = document.getElementById('universalModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function toggleTheme() { document.body.classList.toggle('matrix-theme'); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && e.target.tagName !== 'INPUT') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function getLogo(tags) {
+            const str = tags.join(' ').toLowerCase();
+            if(str.includes('next.js')) return '▲';
+            if(str.includes('react')) return '⚛️';
+            if(str.includes('laravel')) return '🌶️';
+            if(str.includes('python') || str.includes('django')) return '🐍';
+            if(str.includes('node')) return '🟩';
+            return '⚡';
+        }
 
         function renderGrid() {
+            document.getElementById('savedCount').innerText = userSaved.length;
+            
             let data = boilerplates.filter(item => {
                 const matchesFilter = activeFilter === 'all' || item.tags.includes(activeFilter);
-                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery) || item.tags.some(t => t.toLowerCase().includes(searchQuery));
-                const matchesBudget = item.price <= currentBudget; // NEW: Filters out expensive tools
-                
-                return matchesFilter && matchesSearch && matchesBudget;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery);
+                const matchesBudget = item.price <= currentBudget;
+                const matchesSaved = showingSavedOnly ? userSaved.includes(item.id) : true;
+                return matchesFilter && matchesSearch && matchesBudget && matchesSaved;
             });
 
             if (currentSort === 'price-low') data.sort((a, b) => a.price - b.price);
@@ -205,91 +230,214 @@
 
             data.forEach((bp) => {
                 const isUpvoted = userUpvotes.includes(bp.id);
-                const displayUpvotes = bp.upvotes + (isUpvoted ? 1 : 0);
-                const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');
+                const isSaved = userSaved.includes(bp.id);
+                const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[9px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');
+                const logo = getLogo(bp.tags);
+                
+                let badgeHtml = '';
+                if(bp.id === "1") badgeHtml = `<span class="absolute -top-3 -right-3 bg-pink-600 text-white text-[10px] font-black px-3 py-1 rounded-full animate-pulse z-10">-20% OFF</span>`;
+                else if(bp.price === 0) badgeHtml = `<span class="absolute -top-3 -right-3 bg-emerald-500 text-black text-[10px] font-black px-3 py-1 rounded-full z-10">FREE</span>`;
 
-                const card = `
-                <div class="bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-800 p-5 hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(34,211,238,0.05)] transition-all duration-300 animate-fade-in flex flex-col h-full relative group">
-                    <div class="flex justify-between items-start mb-3">
+                grid.innerHTML += `
+                <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl hover:border-gray-600 transition-all duration-300 animate-fade-in flex flex-col h-full relative group shadow-lg" style="background-color: var(--card-bg);">
+                    ${badgeHtml}
+                    <button onclick="toggleBookmark('${bp.id}', event)" class="absolute top-4 right-4 text-xl ${isSaved ? 'text-yellow-400' : 'text-gray-600 hover:text-yellow-400'} transition-colors z-20">★</button>
+                    <div class="flex items-start mb-3 pr-6">
+                        <div class="text-2xl mr-3 opacity-80">${logo}</div>
                         <div>
-                            <h2 class="text-xl font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">${bp.name}</h2>
-                            <p class="text-xs font-mono text-purple-400 mt-0.5">⏱ Saves ${bp.timeSaved}</p>
+                            <h2 class="text-lg font-bold text-white tracking-tight group-hover:theme-text transition-colors">${bp.name}</h2>
+                            <p class="text-[10px] font-mono text-gray-500 mt-0.5">Saves ${bp.timeSaved}</p>
                         </div>
-                        <span class="bg-cyan-950/40 text-cyan-400 border border-cyan-800/30 text-xs font-bold px-2.5 py-1 rounded-md">$${bp.price}</span>
                     </div>
+                    <div class="text-xl font-bold theme-text font-mono mb-2">$${bp.price}</div>
                     <p class="text-gray-400 text-xs leading-relaxed mb-4 flex-grow">${bp.description}</p>
                     <div class="flex flex-wrap gap-1.5 mb-5">${tagsHtml}</div>
                     <div class="grid grid-cols-4 gap-2 mt-auto">
-                        <button onclick="handleUpvote('${bp.id}', event)" class="col-span-1 border ${isUpvoted ? 'border-pink-500 text-pink-500 bg-pink-500/5' : 'border-gray-800 text-gray-400 hover:border-gray-700'} rounded-lg p-2 flex flex-col items-center justify-center transition-all text-xs font-mono">
-                            <span>▲</span><span>${displayUpvotes}</span>
+                        <button onclick="handleUpvote('${bp.id}', event)" class="col-span-1 border ${isUpvoted ? 'theme-border theme-text bg-gray-800' : 'border-gray-800 text-gray-400 hover:border-gray-600'} rounded-lg p-1.5 flex flex-col items-center transition-all text-[10px] font-mono">
+                            <span>▲</span><span>${bp.upvotes + (isUpvoted?1:0)}</span>
                         </button>
-                        <button onclick="openQuickView('${bp.id}')" class="col-span-1 border border-gray-800 hover:border-gray-700 text-gray-300 rounded-lg flex items-center justify-center transition-all text-sm">👁</button>
-                        <a href="${bp.url}" target="_blank" class="col-span-2 text-center bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg flex items-center justify-center text-xs tracking-wider font-mono transition-all">GET ➔</a>
+                        <button onclick="openQuickView('${bp.id}')" class="col-span-1 border border-gray-800 hover:border-gray-600 text-gray-300 rounded-lg text-sm">👁</button>
+                        <a href="${bp.url}" target="_blank" class="col-span-2 text-center theme-bg text-black font-bold rounded-lg flex items-center justify-center text-[11px] tracking-wider font-mono">GET ➔</a>
+                        <label class="col-span-4 flex items-center justify-center gap-2 text-[10px] font-mono text-gray-500 border border-gray-800 py-1.5 rounded hover:bg-gray-800 cursor-pointer transition-all mt-1">
+                            <input type="checkbox" onchange="toggleCompare('${bp.id}')" ${compareList.includes(bp.id) ? 'checked' : ''} class="cursor-pointer"> Compare
+                        </label>
                     </div>
                 </div>`;
-                grid.innerHTML += card;
             });
         }
 
-        // NEW: Event listener to make the slider work live
-        document.getElementById('budgetRange').addEventListener('input', (e) => { 
-            currentBudget = parseInt(e.target.value);
-            document.getElementById('budgetValue').innerText = currentBudget;
-            renderGrid(); 
-        });
+                function injectDealOfDay() {
+            if(boilerplates.length === 0) return;
+            const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const deal = boilerplates[dayOfYear % boilerplates.length];
+            document.getElementById('dealOfTheDay').innerHTML = `
+                <div class="border theme-border theme-shadow rounded-xl p-1 bg-gray-900 mb-8 animate-fade-in relative overflow-hidden text-center flex flex-col md:flex-row items-center justify-between gap-4 py-4 px-6">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full hover:animate-[shimmer_2s_infinite]"></div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest animate-pulse">Flash Deal</span>
+                        <span class="text-white text-sm font-bold">${deal.name} is trending today!</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="text-gray-400 font-mono text-xs">Ends in: <span class="theme-text font-bold">14h 22m</span></span>
+                        <button onclick="openQuickView('${deal.id}')" class="border theme-border theme-text px-4 py-1.5 rounded text-xs font-bold hover:theme-bg hover:text-black transition-all">View Details</button>
+                    </div>
+                </div>`;
+        }
 
+        window.toggleBookmark = function(id, event) {
+            event.stopPropagation();
+            if(userSaved.includes(id)) userSaved = userSaved.filter(i => i !== id); else userSaved.push(id);
+            localStorage.setItem('hub_saved', JSON.stringify(userSaved));
+            renderGrid();
+        };
+
+        window.toggleSaved = function() {
+            showingSavedOnly = !showingSavedOnly;
+            const btn = document.getElementById('showSavedBtn');
+            if(showingSavedOnly) { btn.classList.add('theme-bg', 'text-black'); btn.classList.remove('bg-gray-900', 'text-gray-300'); } 
+            else { btn.classList.remove('theme-bg', 'text-black'); btn.classList.add('bg-gray-900', 'text-gray-300'); }
+            renderGrid();
+        };
+
+        window.randomTool = function() {
+            if(boilerplates.length === 0) return;
+            openQuickView(boilerplates[Math.floor(Math.random() * boilerplates.length)].id);
+        };
+
+        window.openMatchmaker = function() {
+            modalContent.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-black text-white mb-2">Find Your Perfect Stack</h3>
+                    <p class="text-gray-400 text-sm mb-6">Answer 2 questions. We'll crunch the data.</p>
+                    <div class="text-left space-y-4 mb-8">
+                        <div>
+                            <label class="block text-xs font-mono theme-text mb-2">1. PREFERRED LANGUAGE?</label>
+                            <select id="quizLang" class="w-full bg-gray-900 border border-gray-700 text-white rounded p-3 text-sm focus:outline-none theme-border">
+                                <option value="Next.js">React / Next.js</option><option value="Laravel">PHP / Laravel</option>
+                                <option value="Django">Python / Django</option><option value="Node.js">Node / Express</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono theme-text mb-2">2. MAXIMUM BUDGET?</label>
+                            <select id="quizBudget" class="w-full bg-gray-900 border border-gray-700 text-white rounded p-3 text-sm focus:outline-none theme-border">
+                                <option value="0">$0 (Free Only)</option><option value="150">Under $150</option>
+                                <option value="300">Under $300</option><option value="1000">Money is no object</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="runMatchmaker()" class="w-full theme-bg text-black font-black py-4 rounded-xl text-sm tracking-widest uppercase hover:scale-105 transition-all">Calculate Match</button>
+                </div>`;
+            modal.classList.remove('hidden');
+        };
+
+        window.runMatchmaker = function() {
+            const lang = document.getElementById('quizLang').value;
+            const budget = parseInt(document.getElementById('quizBudget').value);
+            const matches = boilerplates.filter(bp => bp.tags.includes(lang) && bp.price <= budget);
+            if(matches.length === 0) {
+                modalContent.innerHTML = `<div class="text-center py-10"><div class="text-4xl mb-4">❌</div><h3 class="text-xl text-white font-bold">No exact match found!</h3><button onclick="closeModal()" class="mt-6 border border-gray-600 text-white px-4 py-2 rounded">Close</button></div>`;
+            } else {
+                openQuickView(matches.sort((a,b) => b.upvotes - a.upvotes)[0].id);
+            }
+        };
+
+        window.toggleCompare = function(id) {
+            const cb = document.getElementById('compareBar');
+            if(compareList.includes(id)) compareList = compareList.filter(item => item !== id);
+            else { if(compareList.length >= 2) { alert("Max 2 tools. Clear first."); renderGrid(); return; } compareList.push(id); }
+            if(compareList.length > 0) { cb.classList.remove('hidden'); cb.classList.add('flex'); document.getElementById('compareCount').innerText = compareList.length; } 
+            else { cb.classList.add('hidden'); cb.classList.remove('flex'); }
+        };
+        window.clearCompare = function() { compareList = []; document.getElementById('compareBar').classList.add('hidden'); document.getElementById('compareBar').classList.remove('flex'); renderGrid(); };
+
+        window.openCompare = function() {
+            if(compareList.length !== 2) return;
+            const i1 = boilerplates.find(b => b.id === compareList[0]);
+            const i2 = boilerplates.find(b => b.id === compareList[1]);
+            modalContent.innerHTML = `
+                <div class="border-b border-gray-800 pb-3 mb-4 flex justify-between items-center">
+                    <span class="text-xs font-mono theme-text tracking-widest uppercase">Head-to-Head</span>
+                    <button onclick="clearCompare(); closeModal()" class="text-[10px] text-gray-500 hover:text-white border border-gray-800 px-2 py-1 rounded">CLEAR</button>
+                </div>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    ${[i1, i2].map(item => `
+                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex flex-col">
+                            <h3 class="font-bold text-white mb-1 text-lg">${item.name}</h3>
+                            <div class="theme-text font-mono text-sm mb-3">$${item.price}</div>
+                            <p class="text-gray-400 text-xs mb-4 flex-grow">${item.description}</p>
+                            <a href="${item.url}" target="_blank" class="w-full text-center border theme-border theme-text hover:theme-bg hover:text-black py-2 rounded-lg text-xs font-bold transition-all">GET IT</a>
+                        </div>
+                    `).join('')}
+                </div>`;
+            modal.classList.remove('hidden');
+        };
+
+        window.openQuickView = function(id) {
+            const bp = boilerplates.find(item => item.id === id);
+            if (!bp) return;
+            const similar = boilerplates.filter(item => item.id !== bp.id && item.tags.some(t => bp.tags.includes(t))).slice(0, 2);
+            let similarHtml = '';
+            if(similar.length > 0) {
+                similarHtml = `
+                    <div class="mt-5 pt-4 border-t border-gray-800">
+                        <p class="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Alternatives</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            ${similar.map(s => `
+                                <div onclick="openQuickView('${s.id}')" class="bg-gray-900 cursor-pointer p-3 rounded-lg border border-gray-800 text-center hover:border-gray-500 transition-all">
+                                    <div class="text-xs font-bold text-gray-300 truncate">${s.name}</div>
+                                    <div class="text-[10px] theme-text font-mono mt-1">${s.price === 0 ? 'FREE' : '$' + s.price}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>`;
+            }
+            modalContent.innerHTML = `
+                <div class="border-b border-gray-800 pb-4 mb-4">
+                    <span class="text-xs font-mono theme-text tracking-widest uppercase">Blueprint Overview</span>
+                    <h3 class="text-2xl font-black text-white mt-1 flex items-center gap-2">${getLogo(bp.tags)} ${bp.name}</h3>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <p class="text-gray-300 leading-relaxed text-xs">${bp.description}</p>
+                    <div class="grid grid-cols-2 gap-4 bg-gray-900 p-3 rounded-xl border border-gray-800 font-mono text-xs text-gray-400">
+                        <div>💸 Price: <span class="text-white font-bold">$${bp.price}</span></div>
+                        <div>⚡ Saved: <span class="text-white font-bold">${bp.timeSaved}</span></div>
+                    </div>
+                    <div class="pt-1 flex gap-2">
+                        <a href="${bp.url}" target="_blank" class="flex-grow text-center theme-bg text-black font-extrabold py-3 rounded-xl text-xs tracking-widest font-mono transition-all">ACQUIRE ACCESS</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('Found the perfect template on SAAS.HUB 🚀')}" target="_blank" class="flex items-center justify-center bg-gray-900 text-white border border-gray-800 w-12 rounded-xl hover:bg-[#1DA1F2] hover:border-[#1DA1F2]" title="Share">𝕏</a>
+                    </div>
+                    ${similarHtml}
+                </div>`;
+            modal.classList.remove('hidden');
+        };
+
+        window.handleUpvote = function(id, event) {
+            event.stopPropagation();
+            if (userUpvotes.includes(id)) userUpvotes = userUpvotes.filter(i => i !== id); else userUpvotes.push(id);
+            localStorage.setItem('hub_upvotes', JSON.stringify(userUpvotes));
+            renderGrid();
+        };
+
+        window.closeModal = function() { modal.classList.add('hidden'); };
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+        document.getElementById('budgetRange').addEventListener('input', (e) => { currentBudget = parseInt(e.target.value); document.getElementById('budgetValue').innerText = currentBudget; renderGrid(); });
         document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderGrid(); });
         document.getElementById('sortSelect').addEventListener('change', (e) => { currentSort = e.target.value; renderGrid(); });
         document.getElementById('filterContainer').addEventListener('click', (e) => {
             if (!e.target.classList.contains('filter-btn')) return;
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-cyan-500/10', 'border-cyan-500/30', 'text-cyan-400');
-                btn.classList.add('bg-gray-900', 'border-gray-800', 'text-gray-400');
+                btn.classList.remove('active', 'bg-gray-800', 'text-white');
+                btn.classList.add('bg-gray-900', 'text-gray-400');
             });
-            e.target.classList.remove('bg-gray-900', 'border-gray-800', 'text-gray-400');
-            e.target.classList.add('active', 'bg-cyan-500/10', 'border-cyan-500/30', 'text-cyan-400');
+            e.target.classList.remove('bg-gray-900', 'text-gray-400');
+            e.target.classList.add('active', 'bg-gray-800', 'text-white');
             activeFilter = e.target.getAttribute('data-filter');
             renderGrid();
         });
 
-        window.handleUpvote = function(id, event) {
-            event.stopPropagation();
-            const index = userUpvotes.indexOf(id);
-            if (index === -1) userUpvotes.push(id); else userUpvotes.splice(index, 1);
-            localStorage.setItem('hub_upvotes', JSON.stringify(userUpvotes));
-            renderGrid();
-        };
-
-        const modal = document.getElementById('quickViewModal');
-        const modalContent = document.getElementById('modalContent');
-        window.openQuickView = function(id) {
-            const bp = boilerplates.find(item => item.id === id);
-            if (!bp) return;
-            modalContent.innerHTML = `
-                <div class="border-b border-gray-900 pb-4 mb-4">
-                    <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase">Product Blueprint Overview</span>
-                    <h3 class="text-2xl font-black text-white mt-1">${bp.name}</h3>
-                </div>
-                <div class="space-y-4 text-sm">
-                    <div>
-                        <p class="text-gray-500 font-mono text-xs">ARCHITECTURAL SCOPE</p>
-                        <p class="text-gray-300 mt-1 leading-relaxed">${bp.description}</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 bg-gray-900/40 p-3 rounded-xl border border-gray-900 font-mono text-xs text-gray-400">
-                        <div>💸 Entry Price: <span class="text-white font-bold">$${bp.price}</span></div>
-                        <div>⚡ Dev Saved: <span class="text-emerald-400 font-bold">${bp.timeSaved}</span></div>
-                    </div>
-                    <div class="pt-2">
-                        <a href="${bp.url}" target="_blank" class="block w-full text-center bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold py-3 rounded-xl text-xs tracking-widest font-mono transition-all">ACQUIRE LIFETIME ACCESS</a>
-                    </div>
-                </div>`;
-            modal.classList.remove('hidden');
-        };
-        document.getElementById('closeModal').addEventListener('click', () => modal.classList.add('hidden'));
-        modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.add('hidden'); });
-
-        renderGrid();
+        setTimeout(() => { injectDealOfDay(); renderGrid(); }, 100);
     </script>
-    
 </body>
 </html>
