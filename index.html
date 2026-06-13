@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Boilerplates & Starter Kits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6 md:p-10 font-sans min-h-screen">
+
+    <div class="max-w-5xl mx-auto">
+        
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">
+                The Best SaaS Boilerplates & Starter Kits
+            </h1>
+            <p class="text-xl text-gray-600">
+                Skip the setup. Launch your next startup in days, not weeks.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="directory-grid">
+            </div>
+
+    </div>
+
+    <script>
+        // 1. Your Affiliate Database
+        const boilerplates = [
+          {
+            name: "ShipFast",
+            price: 199,
+            description: "The Next.js boilerplate with all you need to build your SaaS, AI tool, or any other web app and make your first $ online fast.",
+            tags: ["Stripe", "MongoDB", "Mailgun"],
+            affiliateUrl: "https://shipfa.st/?via=YOUR_AFFILIATE_ID"
+          },
+          {
+            name: "Supastarter",
+            price: 249,
+            description: "A production-ready SaaS boilerplate for Next.js and Nuxt. Features authentication, billing, multi-tenancy and more.",
+            tags: ["Supabase", "Multi-tenant", "i18n"],
+            affiliateUrl: "https://supastarter.dev/?ref=YOUR_AFFILIATE_ID"
+          }
+        ];
+
+        // 2. The code that builds the visual cards
+        const grid = document.getElementById('directory-grid');
+        
+        boilerplates.forEach(bp => {
+            // Make the tags
+            const tagsHtml = bp.tags.map(tag => 
+                `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">${tag}</span>`
+            ).join('');
+            
+            // Build the card HTML
+            const card = `
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900">${bp.name}</h2>
+                    <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">$${bp.price}</span>
+                </div>
+                <p class="text-gray-600 mb-4">${bp.description}</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    ${tagsHtml}
+                </div>
+                <a href="${bp.affiliateUrl}" target="_blank" class="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">
+                    Get ${bp.name}
+                </a>
+            </div>`;
+            
+            // Put the card on the screen
+            grid.innerHTML += card;
+        });
+    </script>
+</body>
+</html>
