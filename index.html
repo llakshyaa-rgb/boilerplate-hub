@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. SEO & SOCIAL PREVIEW TAGS -->
     <title>SaaS Hub - Premium Boilerplates Directory</title>
+    <meta name="description" content="Skip weeks of setup. Compare the best 50+ SaaS boilerplates, starter kits, and UI templates to launch your startup at lightspeed.">
+    <meta property="og:title" content="SaaS Hub - Launch Your Startup Fast">
+    <meta property="og:description" content="The ultimate directory of production-ready SaaS boilerplates. Find your perfect stack today.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        body { background-color: #050507; color: #f3f4f6; }
-        
-        /* Grid background effect */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
+        body { background-color: #050507; color: #f3f4f6; padding-bottom: 80px; } /* Added padding for banner */
+        .bg-grid { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); }
     </style>
 </head>
-<body class="font-sans min-h-screen bg-grid selection:bg-cyan-500 selection:text-black">
+<body class="font-sans min-h-screen bg-grid selection:bg-cyan-500 selection:text-black relative">
 
     <!-- Top Navigation Bar -->
     <nav class="border-b border-gray-900 bg-black/60 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
@@ -30,22 +29,23 @@
             <div class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
                 SAAS.HUB
             </div>
-            <div class="flex items-center gap-4">
-                <select id="sortSelect" class="bg-gray-900 border border-gray-800 text-gray-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-cyan-500">
+            <div class="flex items-center gap-3">
+                <select id="sortSelect" class="hidden md:block bg-gray-900 border border-gray-800 text-gray-300 text-xs rounded-lg px-2 py-2 focus:outline-none focus:border-cyan-500">
                     <option value="default">Sort: Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
-                    <option value="popular">Most Popular (Upvotes)</option>
                 </select>
+                <!-- 2. SUBMIT TOOL BUTTON (Opens Email) -->
+                <a href="mailto:hello@example.com?subject=SaaS Hub - Submit Tool&body=Name of Tool:%0D%0AURL:%0D%0APrice:%0D%0AStack:" class="bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 text-xs font-bold px-4 py-2 rounded-lg transition-all tracking-wide">
+                    + SUBMIT TOOL
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Glowing Cyberpunk Header -->
-    <header class="relative py-20 px-6 text-center border-b border-gray-900 bg-black/40">
+    <header class="relative py-16 md:py-20 px-6 text-center border-b border-gray-900 bg-black/40">
         <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-0 right-1/4 w-[300px] h-[150px] bg-cyan-600/10 rounded-full blur-[80px] pointer-events-none"></div>
-
         <div class="max-w-4xl mx-auto relative z-10">
             <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white">
                 Launch Your SaaS <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">At Lightspeed</span>
@@ -53,18 +53,9 @@
             <p class="text-base md:text-lg text-gray-400 mb-8 max-w-xl mx-auto">
                 Skip weeks of setup. Compare and find the ultimate codebase template for your startup.
             </p>
-            
-            <!-- Live Search Bar -->
             <div class="relative max-w-lg mx-auto mb-6">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Search frameworks, features, or names..." 
-                    class="w-full px-5 py-3.5 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all shadow-2xl text-sm"
-                >
+                <input type="text" id="searchInput" placeholder="Search frameworks, features, or names..." class="w-full px-5 py-3.5 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all shadow-2xl text-sm">
             </div>
-
-            <!-- Quick Filter Tags -->
             <div class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto" id="filterContainer">
                 <button class="filter-btn active bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="all">ALL</button>
                 <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="Next.js">NEXT.JS</button>
@@ -75,33 +66,35 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto p-6 md:p-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="directory-grid">
-            <!-- Dynamic Cards Injected Here -->
-        </div>
-        
-        <!-- Empty State -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="directory-grid"></div>
         <div id="no-results" class="hidden text-center py-20">
             <p class="text-xl text-purple-400 font-bold">System Offline</p>
             <p class="text-gray-500 text-sm mt-1">No tools matching your query were found.</p>
         </div>
     </main>
 
-    <!-- Immersive Quick View Modal Overlay -->
     <div id="quickViewModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-gray-950 border border-gray-800 w-full max-w-lg rounded-2xl overflow-hidden p-6 relative animate-fade-in shadow-[0_0_50px_rgba(0,0,0,0.8)]">
             <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-xl">&times;</button>
-            <div id="modalContent">
-                <!-- Injected via JavaScript -->
-            </div>
+            <div id="modalContent"></div>
         </div>
+    </div>
+
+    <!-- 3. STICKY FEATURED BANNER (Monetization) -->
+    <div class="fixed bottom-0 left-0 w-full bg-gradient-to-r from-purple-900 via-indigo-900 to-cyan-900 border-t border-cyan-500/30 shadow-[0_-10px_40px_rgba(34,211,238,0.15)] z-40 px-4 py-3 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-3">
+        <div>
+            <span class="bg-pink-500 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-widest mr-2">Top Pick</span>
+            <span class="text-white font-bold text-sm">Launch in days, not weeks.</span>
+            <span class="text-cyan-200 text-sm ml-1">Get $50 off ShipFast today.</span>
+        </div>
+        <a href="https://shipfa.st/" target="_blank" class="bg-cyan-400 hover:bg-cyan-300 text-black text-xs font-black px-6 py-2 rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-all uppercase tracking-wide w-full md:w-auto">
+            Claim Deal ➔
+        </a>
     </div>
 
     <!-- Application Database and Logic -->
     <script>
-    
-                // Complete database of 50 real SaaS Boilerplates and Starter Kits
         const boilerplates = [
             { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, MongoDB, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB"], timeSaved: "40+ hours", url: "https://shipfa.st/" },
             { id: "2", name: "Supastarter", price: 249, upvotes: 98, description: "A high-performance SaaS foundation supporting Next.js architectures. Includes robust multi-tenancy configurations.", tags: ["Next.js", "Supabase", "Stripe"], timeSaved: "35 hours", url: "https://supastarter.dev/" },
@@ -152,52 +145,56 @@
             { id: "47", name: "FastPocket", price: 55, upvotes: 21, description: "Ultra-lean stack utilizing Pocketbase, React, Tailwind, and DaisyUI for rapid database deployment.", tags: ["React", "Pocketbase"], timeSaved: "20 hours", url: "https://fastpocket.dev/" },
             { id: "48", name: "AIO", price: 499, upvotes: 45, description: "A massive dual-template providing React Native for mobile and Next.js for the web in one ecosystem.", tags: ["React Native", "Next.js", "Mobile"], timeSaved: "80 hours", url: "https://aio.dev/" },
             { id: "49", name: "Vercel SaaS Starter", price: 0, upvotes: 350, description: "The official open-source template by Vercel utilizing Postgres, Drizzle, and Stripe.", tags: ["Next.js", "PostgreSQL", "Stripe"], timeSaved: "10 hours", url: "https://github.com/vercel/nextjs-subscription-payments" },
-            { id: "50", name: "ixartz Boilerplate", price: 0, upvotes: 280, description: "Open-source reference architecture wiring up Clerk Auth, DrizzleORM, and Tailwind 4 beautifully.", tags: ["Next.js", "Tailwind", "Open Source"], timeSaved: "15 hours", url: "https://nextjs-boilerplate.com/" }
+            { id: "50", name: "ixartz Boilerplate", price: 0, upvotes: 280, description: "Open-source reference architecture wiring up Clerk Auth, DrizzleORM, and Tailwind 4 beautifully.", tags: ["Next.js", "Tailwind", "Open Source"], timeSaved: "15 hours", url: "https://nextjs-boilerplate.com/" },
+            { id: "51", name: "Nodewood", price: 295, upvotes: 48, description: "A Vue and Node.js SaaS boilerplate that saves you weeks of backend configuration.", tags: ["Node.js", "Vue", "PostgreSQL"], timeSaved: "40 hours", url: "https://nodewood.com/" },
+            { id: "52", name: "Precedent", price: 0, upvotes: 412, description: "An opinionated Next.js starter with Prisma, Tailwind, and Radix UI by Steven Tey.", tags: ["Next.js", "Prisma", "Open Source"], timeSaved: "20 hours", url: "https://github.com/steven-tey/precedent" },
+            { id: "53", name: "Taxonomy", price: 0, upvotes: 350, description: "Open-source Next.js 13 app router boilerplate featuring modern server components.", tags: ["Next.js", "Stripe", "Open Source"], timeSaved: "25 hours", url: "https://github.com/shadcn-ui/taxonomy" },
+            { id: "54", name: "GoSaaS", price: 149, upvotes: 33, description: "A lightweight, blazingly fast Go backend template paired with HTMX and Tailwind.", tags: ["Go", "HTMX", "Tailwind"], timeSaved: "30 hours", url: "https://gosaas.io/" },
+            { id: "55", name: "SaaS UI", price: 249, upvotes: 118, description: "Advanced React component library and starter kit built on top of Chakra UI.", tags: ["React", "Chakra UI"], timeSaved: "35 hours", url: "https://saas-ui.dev/" },
+            { id: "56", name: "Flask Base", price: 0, upvotes: 89, description: "A highly-rated Python Flask application boilerplate with SQLAlchemy and Redis.", tags: ["Flask", "Python", "Open Source"], timeSaved: "20 hours", url: "https://github.com/hack4impact/flask-base" },
+            { id: "57", name: "Nuxt Starter", price: 0, upvotes: 77, description: "The official Supabase starter kit for Nuxt 3, featuring full user management.", tags: ["Nuxt", "Supabase", "Open Source"], timeSaved: "15 hours", url: "https://github.com/nuxt-modules/supabase" },
+            { id: "58", name: "MERN SaaS", price: 89, upvotes: 41, description: "A clean, affordable MERN stack foundation with role-based access control.", tags: ["Node.js", "React", "MongoDB"], timeSaved: "25 hours", url: "https://github.com/" },
+            { id: "59", name: "Horizon UI", price: 89, upvotes: 156, description: "Trend-setting admin dashboard and SaaS template available for React and Next.js.", tags: ["React", "Next.js", "Tailwind"], timeSaved: "30 hours", url: "https://horizon-ui.com/" },
+            { id: "60", name: "Volt Pro", price: 89, upvotes: 62, description: "Premium Bootstrap 5 admin dashboard featuring hundreds of UI components.", tags: ["Bootstrap", "HTML"], timeSaved: "20 hours", url: "https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" },
+            { id: "61", name: "Clerk Next App", price: 0, upvotes: 210, description: "The definitive starting point for integrating Clerk authentication into Next.js.", tags: ["Next.js", "Auth"], timeSaved: "10 hours", url: "https://clerk.com/" },
+            { id: "62", name: "Convex Starter", price: 0, upvotes: 94, description: "Modern reactive backend template providing instant database synchronization.", tags: ["React", "Convex", "Serverless"], timeSaved: "15 hours", url: "https://www.convex.dev/" },
+            { id: "63", name: "FastAPI React", price: 0, upvotes: 125, description: "Cookiecutter template combining Python FastAPI backends with React frontends.", tags: ["Python", "React", "Open Source"], timeSaved: "30 hours", url: "https://github.com/tiangolo/full-stack-fastapi-postgresql" },
+            { id: "64", name: "RubySaaS Starter", price: 199, upvotes: 38, description: "A modular Rails application optimized for immediate deployment on Render or Heroku.", tags: ["Ruby on Rails", "Stripe"], timeSaved: "45 hours", url: "https://rubyonrails.org/" },
+            { id: "65", name: "Adonis SaaS", price: 0, upvotes: 42, description: "Node.js framework template for developers who love the MVC pattern of Laravel.", tags: ["Node.js", "AdonisJS"], timeSaved: "25 hours", url: "https://adonisjs.com/" },
+            { id: "66", name: "Amplify SaaS", price: 0, upvotes: 105, description: "AWS-backed template handling Cognito auth, AppSync GraphQL, and DynamoDB.", tags: ["AWS", "React", "Serverless"], timeSaved: "40 hours", url: "https://aws.amazon.com/amplify/" },
+            { id: "67", name: "Vuexy", price: 35, upvotes: 310, description: "The best-selling Vue.js admin template packed with enterprise-ready app views.", tags: ["Vue", "Admin"], timeSaved: "50 hours", url: "https://themeforest.net/item/vuexy-vuejs-html-laravel-admin-dashboard-template/23328599" },
+            { id: "68", name: "TailAdmin", price: 0, upvotes: 180, description: "Free and open-source Tailwind CSS admin dashboard template for SaaS analytics.", tags: ["Tailwind", "Alpine.js", "Open Source"], timeSaved: "15 hours", url: "https://tailadmin.com/" },
+            { id: "69", name: "SvelteKit Auth", price: 0, upvotes: 55, description: "Minimalist SvelteKit starting point heavily optimized for secure session management.", tags: ["SvelteKit", "Auth"], timeSaved: "10 hours", url: "https://kit.svelte.dev/" },
+            { id: "70", name: "Rust Actix Web", price: 0, upvotes: 82, description: "Ultra-high performance Rust backend template paired with a Yew frontend.", tags: ["Rust", "WebAssembly", "Open Source"], timeSaved: "35 hours", url: "https://actix.rs/" }
         ];
-        
-        
 
         // State Tracking variables
         let activeFilter = 'all';
         let searchQuery = '';
         let currentSort = 'default';
-
-        // Initialize Upvote Records from localStorage to persist user interactions
         let userUpvotes = JSON.parse(localStorage.getItem('hub_upvotes')) || [];
 
         const grid = document.getElementById('directory-grid');
         const noResults = document.getElementById('no-results');
 
-        // Render Loop for Card Components
         function renderGrid() {
-            // Apply Filters first
             let data = boilerplates.filter(item => {
                 const matchesFilter = activeFilter === 'all' || item.tags.includes(activeFilter);
-                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || 
-                                      item.description.toLowerCase().includes(searchQuery) ||
-                                      item.tags.some(t => t.toLowerCase().includes(searchQuery));
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery) || item.tags.some(t => t.toLowerCase().includes(searchQuery));
                 return matchesFilter && matchesSearch;
             });
 
-            // Apply Sorting
             if (currentSort === 'price-low') data.sort((a, b) => a.price - b.price);
             else if (currentSort === 'price-high') data.sort((a, b) => b.price - a.price);
-            else if (currentSort === 'popular') data.sort((a, b) => (b.upvotes + (userUpvotes.includes(b.id) ? 1 : 0)) - (a.upvotes + (userUpvotes.includes(a.id) ? 1 : 0)));
 
             grid.innerHTML = '';
-            if (data.length === 0) {
-                noResults.classList.remove('hidden');
-                return;
-            }
+            if (data.length === 0) { noResults.classList.remove('hidden'); return; }
             noResults.classList.add('hidden');
 
             data.forEach((bp) => {
                 const isUpvoted = userUpvotes.includes(bp.id);
                 const displayUpvotes = bp.upvotes + (isUpvoted ? 1 : 0);
-                
-                const tagsHtml = bp.tags.map(tag => 
-                    `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`
-                ).join('');
+                const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');
 
                 const card = `
                 <div class="bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-800 p-5 hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(34,211,238,0.05)] transition-all duration-300 animate-fade-in flex flex-col h-full relative group">
@@ -208,43 +205,22 @@
                         </div>
                         <span class="bg-cyan-950/40 text-cyan-400 border border-cyan-800/30 text-xs font-bold px-2.5 py-1 rounded-md">$${bp.price}</span>
                     </div>
-                    
                     <p class="text-gray-400 text-xs leading-relaxed mb-4 flex-grow">${bp.description}</p>
-                    
-                    <div class="flex flex-wrap gap-1.5 mb-5">
-                        ${tagsHtml}
-                    </div>
-                    
-                    <!-- Action Row Layout -->
+                    <div class="flex flex-wrap gap-1.5 mb-5">${tagsHtml}</div>
                     <div class="grid grid-cols-4 gap-2 mt-auto">
                         <button onclick="handleUpvote('${bp.id}', event)" class="col-span-1 border ${isUpvoted ? 'border-pink-500 text-pink-500 bg-pink-500/5' : 'border-gray-800 text-gray-400 hover:border-gray-700'} rounded-lg p-2 flex flex-col items-center justify-center transition-all text-xs font-mono">
-                            <span>▲</span>
-                            <span>${displayUpvotes}</span>
+                            <span>▲</span><span>${displayUpvotes}</span>
                         </button>
-                        <button onclick="openQuickView('${bp.id}')" class="col-span-1 border border-gray-800 hover:border-gray-700 text-gray-300 rounded-lg flex items-center justify-center transition-all text-sm">
-                            👁
-                        </button>
-                        <a href="${bp.url}" target="_blank" class="col-span-2 text-center bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg flex items-center justify-center text-xs tracking-wider font-mono transition-all">
-                            GET ➔
-                        </a>
+                        <button onclick="openQuickView('${bp.id}')" class="col-span-1 border border-gray-800 hover:border-gray-700 text-gray-300 rounded-lg flex items-center justify-center transition-all text-sm">👁</button>
+                        <a href="${bp.url}" target="_blank" class="col-span-2 text-center bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg flex items-center justify-center text-xs tracking-wider font-mono transition-all">GET ➔</a>
                     </div>
                 </div>`;
                 grid.innerHTML += card;
             });
         }
 
-        // Live Event Handlers
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase();
-            renderGrid();
-        });
-
-        document.getElementById('sortSelect').addEventListener('change', (e) => {
-            currentSort = e.target.value;
-            renderGrid();
-        });
-
-        // Pill button selection logic
+        document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderGrid(); });
+        document.getElementById('sortSelect').addEventListener('change', (e) => { currentSort = e.target.value; renderGrid(); });
         document.getElementById('filterContainer').addEventListener('click', (e) => {
             if (!e.target.classList.contains('filter-btn')) return;
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -257,24 +233,19 @@
             renderGrid();
         });
 
-        // Upvote Persistent state calculation logic
         window.handleUpvote = function(id, event) {
             event.stopPropagation();
             const index = userUpvotes.indexOf(id);
-            if (index === -1) userUpvotes.push(id);
-            else userUpvotes.splice(index, 1);
+            if (index === -1) userUpvotes.push(id); else userUpvotes.splice(index, 1);
             localStorage.setItem('hub_upvotes', JSON.stringify(userUpvotes));
             renderGrid();
         };
 
-        // Quick View Feature Core Execution
         const modal = document.getElementById('quickViewModal');
         const modalContent = document.getElementById('modalContent');
-
         window.openQuickView = function(id) {
             const bp = boilerplates.find(item => item.id === id);
             if (!bp) return;
-
             modalContent.innerHTML = `
                 <div class="border-b border-gray-900 pb-4 mb-4">
                     <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase">Product Blueprint Overview</span>
@@ -283,26 +254,21 @@
                 <div class="space-y-4 text-sm">
                     <div>
                         <p class="text-gray-500 font-mono text-xs">ARCHITECTURAL SCOPE</p>
-                        <p class="text-gray-300 mt-1 leading-relaxed">${bp.description} This template standardizes asset pipelines, provides pre-tested authentication routing, and packages critical middleware components required to securely deliver core code directly into functional testing pipelines.</p>
+                        <p class="text-gray-300 mt-1 leading-relaxed">${bp.description}</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4 bg-gray-900/40 p-3 rounded-xl border border-gray-900 font-mono text-xs text-gray-400">
                         <div>💸 Entry Price: <span class="text-white font-bold">$${bp.price}</span></div>
-                        <div>⚡ Development Saved: <span class="text-emerald-400 font-bold">${bp.timeSaved}</span></div>
+                        <div>⚡ Dev Saved: <span class="text-emerald-400 font-bold">${bp.timeSaved}</span></div>
                     </div>
                     <div class="pt-2">
-                        <a href="${bp.url}" target="_blank" class="block w-full text-center bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold py-3 rounded-xl text-xs tracking-widest font-mono transition-all">
-                            ACQUIRE LIFETIME ACCESS LICENSE
-                        </a>
+                        <a href="${bp.url}" target="_blank" class="block w-full text-center bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold py-3 rounded-xl text-xs tracking-widest font-mono transition-all">ACQUIRE LIFETIME ACCESS</a>
                     </div>
-                </div>
-            `;
+                </div>`;
             modal.classList.remove('hidden');
         };
-
         document.getElementById('closeModal').addEventListener('click', () => modal.classList.add('hidden'));
         modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.add('hidden'); });
 
-        // Initial Layout paint execution
         renderGrid();
     </script>
 </body>
