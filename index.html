@@ -194,6 +194,113 @@
             data.forEach((bp) => {
                 const isUpvoted = userUpvotes.includes(bp.id);
                 const displayUpvotes = bp.upvotes + (isUpvoted ? 1 : 0);
+                const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');center bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg flex items-center justify-center text-xs tracking-wider font-mono transition-all">GET ➔</a>
+                    </div>
+                </div>`;
+                grid.innerHTML += card;
+            });
+        }
+
+            <script>
+        const boilerplates = [
+            { id: "1", name: "ShipFast", price: 199, upvotes: 142, description: "The premier Next.js template packaged with user auth, MongoDB, Stripe gateways, and cold email workflows.", tags: ["Next.js", "Stripe", "MongoDB"], timeSaved: "40+ hours", url: "https://shipfa.st/" },
+            { id: "2", name: "Supastarter", price: 249, upvotes: 98, description: "A high-performance SaaS foundation supporting Next.js architectures. Includes robust multi-tenancy configurations.", tags: ["Next.js", "Supabase", "Stripe"], timeSaved: "35 hours", url: "https://supastarter.dev/" },
+            { id: "3", name: "SaaS Pegasus", price: 295, upvotes: 114, description: "The standard for production Python deployments. Thoroughly optimized Django components.", tags: ["Django", "Python", "PostgreSQL"], timeSaved: "50+ hours", url: "https://www.saaspegasus.com/" },
+            { id: "4", name: "Makerkit", price: 249, upvotes: 76, description: "An enterprise-grade template tailored for Firebase & Supabase integrations alongside prebuilt subscription flows.", tags: ["Next.js", "Firebase", "Stripe"], timeSaved: "30 hours", url: "https://makerkit.dev/" },
+            { id: "5", name: "Larafast", price: 149, upvotes: 89, description: "Accelerated application development workspace utilizing native Laravel tools alongside Vue view layers.", tags: ["Laravel", "Vue", "Stripe"], timeSaved: "25 hours", url: "https://larafast.com/" },
+            { id: "6", name: "Bullet Train", price: 449, upvotes: 53, description: "A premium Ruby on Rails framework optimization providing comprehensive business-in-a-box assets.", tags: ["Ruby on Rails", "PostgreSQL"], timeSaved: "60 hours", url: "https://bullettrain.co/" },
+            { id: "7", name: "Divjoy", price: 169, upvotes: 67, description: "Visual workspace application generator that outputs cleanly structured component codebases.", tags: ["React", "Firebase"], timeSaved: "20 hours", url: "https://divjoy.com/" },
+            { id: "8", name: "Gravity", price: 349, upvotes: 82, description: "Comprehensive architectural framework covering complex configurations inside Node environments.", tags: ["Node.js", "React", "PostgreSQL"], timeSaved: "45 hours", url: "https://usegravity.app/" },
+            { id: "9", name: "Jumpstart", price: 249, upvotes: 61, description: "Sleek and modular structural patterns helping you map custom payment workflows inside Rails.", tags: ["Ruby on Rails", "Stripe"], timeSaved: "35 hours", url: "https://jumpstartrails.com/" },
+            { id: "10", name: "Nextless", price: 199, upvotes: 45, description: "Serverless backend systems cleanly integrated inside a structured Next.js AWS configuration.", tags: ["Next.js", "AWS", "Serverless"], timeSaved: "40 hours", url: "https://nextlessjs.com/" },
+            { id: "11", name: "AnotherWrapper", price: 249, upvotes: 121, description: "Next.js 16 toolkit equipped with 8 production-ready AI applications, Stripe, and Drizzle ORM.", tags: ["Next.js", "AI", "Stripe"], timeSaved: "50 hours", url: "https://anotherwrapper.com/" },
+            { id: "12", name: "ApparenceKit", price: 149, upvotes: 64, description: "The ultimate Flutter boilerplate. Ships with auth, notifications, billing, and highly optimized themes.", tags: ["Flutter", "Mobile", "Firebase"], timeSaved: "45 hours", url: "https://apparencekit.dev/" },
+            { id: "13", name: "Boring Database", price: 160, upvotes: 50, description: "Remix and Fly.io foundation focusing on simple, stable table setups, Stripe, and email via Resend.", tags: ["Remix", "Stripe"], timeSaved: "20 hours", url: "https://boringdatabase.com/" },
+            { id: "14", name: "Business Class", price: 169, upvotes: 105, description: "Ruby on Rails SaaS boilerplate complete with Tailwind UI, Paddle billing, and deployment scripts.", tags: ["Ruby on Rails", "Tailwind"], timeSaved: "30 hours", url: "https://businessclass.tech/" },
+            { id: "15", name: "DaaSBoilerplate", price: 187, upvotes: 28, description: "Data-as-a-Service foundation using Next.js, Strapi, and PostgreSQL for complex directories.", tags: ["Next.js", "Node.js", "PostgreSQL"], timeSaved: "40 hours", url: "https://daasboilerplate.com/" },
+            { id: "16", name: "Dirstarter", price: 159, upvotes: 100, description: "Production-ready directory builder featuring AI content generation, Stripe, and Resend.", tags: ["Next.js", "AI", "Stripe"], timeSaved: "35 hours", url: "https://dirstarter.com/" },
+            { id: "17", name: "DirectoryFast", price: 147, upvotes: 10, description: "Next.js directory boilerplate built with Prisma, Tailwind, SEO optimizations, and UI dashboards.", tags: ["Next.js", "Prisma"], timeSaved: "20 hours", url: "https://directoryfast.com/" },
+            { id: "18", name: "Fast Flutter", price: 159, upvotes: 19, description: "Mobile-first boilerplate handling auth, themes, navigation, and user onboarding in Flutter.", tags: ["Flutter", "Mobile"], timeSaved: "25 hours", url: "https://fastflutter.dev/" },
+            { id: "19", name: "Fastest", price: 279, upvotes: 40, description: "Primate.js and Svelte template targeting maximum speed. Includes Stripe, blogs, and settings.", tags: ["Svelte", "Stripe"], timeSaved: "30 hours", url: "https://fastest.engineer/" },
+            { id: "20", name: "LaunchFast", price: 99, upvotes: 30, description: "Supports Astro, Next.js, and SvelteKit. Combines SEO, Stripe, and components into one kit.", tags: ["Astro", "SvelteKit", "Next.js"], timeSaved: "25 hours", url: "https://launchfast.pro/" },
+            { id: "21", name: "LaunchToday", price: 249, upvotes: 20, description: "React Native and Expo starter pack connected to Supabase for mobile app founders.", tags: ["React Native", "Supabase", "Mobile"], timeSaved: "40 hours", url: "https://launchtoday.dev/" },
+            { id: "22", name: "Launchway", price: 99, upvotes: 42, description: "Clean TypeScript and Tailwind template featuring 2FA, onboarding, and subscriptions.", tags: ["TypeScript", "Tailwind"], timeSaved: "15 hours", url: "https://launchway.dev/" },
+            { id: "23", name: "Lists Kit", price: 47, upvotes: 15, description: "HTML/CSS and Javascript directory components for lightweight resource listings.", tags: ["HTML", "CSS"], timeSaved: "10 hours", url: "https://listskit.com/" },
+            { id: "24", name: "SaaSBold", price: 149, upvotes: 66, description: "A highly affordable Next.js template handling Auth.js, Stripe, admin panels, and Figma files.", tags: ["Next.js", "Stripe"], timeSaved: "30 hours", url: "https://saasbold.com/" },
+            { id: "25", name: "BuilderKit", price: 149, upvotes: 80, description: "AI-first Next.js wrappers bridging LemonSqueezy, Supabase, and OpenAI seamlessly.", tags: ["Next.js", "AI", "Supabase"], timeSaved: "45 hours", url: "https://builderkit.ai/" },
+            { id: "26", name: "Nextbase", price: 199, upvotes: 85, description: "Clean Next.js architecture heavily integrated with Supabase Auth and database logic.", tags: ["Next.js", "Supabase"], timeSaved: "25 hours", url: "https://nextbase.dev/" },
+            { id: "27", name: "SaaSRocket", price: 50, upvotes: 35, description: "Budget-friendly option running Next.js 14, Supabase, and Resend for fast minimum viable products.", tags: ["Next.js", "Supabase"], timeSaved: "15 hours", url: "https://saasrocket.io/" },
+            { id: "28", name: "Bedrock", price: 149, upvotes: 130, description: "Built by Max Stoiber. Full-stack control using Next.js and GraphQL for production scaling.", tags: ["Next.js", "GraphQL"], timeSaved: "40 hours", url: "https://bedrock.mxstbr.com/" },
+            { id: "29", name: "OpenSaaS", price: 0, upvotes: 210, description: "The premier free open-source starter built on the Wasp framework. Includes Stripe and OpenAI.", tags: ["React", "AI"], timeSaved: "20 hours", url: "https://opensaas.sh/" },
+            { id: "30", name: "Shipixen", price: 87, upvotes: 262, description: "Generates customized Next.js and Tailwind codebase specifically optimized for high SEO.", tags: ["Next.js", "Tailwind", "SEO"], timeSaved: "30 hours", url: "https://shipixen.com/" },
+            { id: "31", name: "Neorepo", price: 129, upvotes: 40, description: "Production-ready monorepo templates to accelerate scaling SaaS apps right from deployment.", tags: ["Next.js", "Monorepo"], timeSaved: "35 hours", url: "https://neorepo.com/" },
+            { id: "32", name: "T3 Stack", price: 0, upvotes: 450, description: "Free CLI-driven scaffolding wiring up Next.js, tRPC, Prisma/Drizzle, and Auth.js instantly.", tags: ["Next.js", "Prisma"], timeSaved: "10 hours", url: "https://create.t3.gg/" },
+            { id: "33", name: "Achromatic", price: 180, upvotes: 55, description: "AI-centric boilerplate featuring built-in streaming chatbots and a credits-based usage system.", tags: ["Next.js", "AI", "Stripe"], timeSaved: "50 hours", url: "https://achromatic.dev/" },
+            { id: "34", name: "Solid", price: 59, upvotes: 22, description: "Budget Next.js 16 premium kit wired to NextAuth and Sanity CMS for quick publishing.", tags: ["Next.js", "Sanity CMS"], timeSaved: "20 hours", url: "https://solid.nextjstemplates.com/" },
+            { id: "35", name: "Shipped", price: 157, upvotes: 95, description: "Next.js kit that bundles OpenAI, Anthropic, and Gemini integrations for instant AI apps.", tags: ["Next.js", "AI", "Stripe"], timeSaved: "40 hours", url: "https://shipped.club/" },
+            { id: "36", name: "BoxyHQ Starter", price: 0, upvotes: 110, description: "Enterprise-ready open-source kit featuring SAML SSO, SCIM directory sync, and audit logs.", tags: ["Next.js", "Enterprise"], timeSaved: "60 hours", url: "https://boxyhq.com/" },
+            { id: "37", name: "Saasfly", price: 0, upvotes: 75, description: "Modern open-source monorepo template utilizing Turborepo, tRPC, Kysely, and Bun.", tags: ["Next.js", "Monorepo"], timeSaved: "25 hours", url: "https://saasfly.io/" },
+            { id: "38", name: "Modern Mern", price: 129, upvotes: 18, description: "Accelerates MERN stack SaaS development with customizable React components and Express APIs.", tags: ["Node.js", "React", "MongoDB"], timeSaved: "35 hours", url: "https://modernmern.com/" },
+            { id: "39", name: "Ship SaaS", price: 149, upvotes: 25, description: "Billing and database integrations wrapped tightly into a Supabase and Next.js shell.", tags: ["Next.js", "Supabase"], timeSaved: "30 hours", url: "https://shipsaas.com/" },
+            { id: "40", name: "Supalaunch", price: 199, upvotes: 38, description: "Complete package including LangChain chat capabilities, AI features, and SEO landing pages.", tags: ["Next.js", "AI", "Stripe"], timeSaved: "45 hours", url: "https://supalaunch.com/" },
+            { id: "41", name: "Zippy Starter", price: 99, upvotes: 41, description: "Streamlined dynamic boilerplate offering stunning pre-built templates and an intuitive setup CLI.", tags: ["Next.js", "Tailwind"], timeSaved: "20 hours", url: "https://zippystarter.com/" },
+            { id: "42", name: "Next Forge", price: 0, upvotes: 120, description: "A highly robust, community-loved foundation for modern Next.js web apps with minimal bloat.", tags: ["Next.js", "Stripe"], timeSaved: "25 hours", url: "https://next-forge.com/" },
+            { id: "43", name: "Serverless SaaS", price: 195, upvotes: 68, description: "Accelerates cloud-native development with team management, CMS, Stripe, and AWS integrations.", tags: ["React", "AWS", "Serverless"], timeSaved: "50 hours", url: "https://serverless.page/" },
+            { id: "44", name: "SaaSy Land", price: 0, upvotes: 24, description: "Modern open-source template featuring robust authentication blocks and Lemon Squeezy.", tags: ["Next.js", "Open Source"], timeSaved: "15 hours", url: "https://saasyland.com/" },
+            { id: "45", name: "AppKickOff", price: 169, upvotes: 12, description: "Kotlin-based Android mobile boilerplate with built-in dark mode and payment flows.", tags: ["Kotlin", "Mobile"], timeSaved: "30 hours", url: "https://appkickoff.com/" },
+            { id: "46", name: "Ecommerce Boilerplate", price: 39, upvotes: 8, description: "Low-cost Node.js and Next.js starter specifically built for launching rapid digital storefronts.", tags: ["Next.js", "Node.js"], timeSaved: "15 hours", url: "https://github.com/sushant/ecommerce-boilerplate" },
+            { id: "47", name: "FastPocket", price: 55, upvotes: 21, description: "Ultra-lean stack utilizing Pocketbase, React, Tailwind, and DaisyUI for rapid database deployment.", tags: ["React", "Pocketbase"], timeSaved: "20 hours", url: "https://fastpocket.dev/" },
+            { id: "48", name: "AIO", price: 499, upvotes: 45, description: "A massive dual-template providing React Native for mobile and Next.js for the web.", tags: ["React Native", "Next.js", "Mobile"], timeSaved: "80 hours", url: "https://aio.dev/" },
+            { id: "49", name: "Vercel SaaS", price: 0, upvotes: 350, description: "The official open-source template by Vercel utilizing Postgres, Drizzle, and Stripe.", tags: ["Next.js", "PostgreSQL"], timeSaved: "10 hours", url: "https://github.com/vercel/nextjs-subscription-payments" },
+            { id: "50", name: "ixartz Starter", price: 0, upvotes: 280, description: "Open-source reference architecture wiring up Clerk Auth, DrizzleORM, and Tailwind 4 beautifully.", tags: ["Next.js", "Tailwind"], timeSaved: "15 hours", url: "https://nextjs-boilerplate.com/" },
+            { id: "51", name: "Nodewood", price: 295, upvotes: 48, description: "A Vue and Node.js SaaS boilerplate that saves you weeks of backend configuration.", tags: ["Node.js", "Vue", "PostgreSQL"], timeSaved: "40 hours", url: "https://nodewood.com/" },
+            { id: "52", name: "Precedent", price: 0, upvotes: 412, description: "An opinionated Next.js starter with Prisma, Tailwind, and Radix UI by Steven Tey.", tags: ["Next.js", "Prisma", "Open Source"], timeSaved: "20 hours", url: "https://github.com/steven-tey/precedent" },
+            { id: "53", name: "Taxonomy", price: 0, upvotes: 350, description: "Open-source Next.js 13 app router boilerplate featuring modern server components.", tags: ["Next.js", "Stripe", "Open Source"], timeSaved: "25 hours", url: "https://github.com/shadcn-ui/taxonomy" },
+            { id: "54", name: "GoSaaS", price: 149, upvotes: 33, description: "A lightweight, blazingly fast Go backend template paired with HTMX and Tailwind.", tags: ["Go", "HTMX", "Tailwind"], timeSaved: "30 hours", url: "https://gosaas.io/" },
+            { id: "55", name: "SaaS UI", price: 249, upvotes: 118, description: "Advanced React component library and starter kit built on top of Chakra UI.", tags: ["React", "Chakra UI"], timeSaved: "35 hours", url: "https://saas-ui.dev/" },
+            { id: "56", name: "Flask Base", price: 0, upvotes: 89, description: "A highly-rated Python Flask application boilerplate with SQLAlchemy and Redis.", tags: ["Flask", "Python", "Open Source"], timeSaved: "20 hours", url: "https://github.com/hack4impact/flask-base" },
+            { id: "57", name: "Nuxt Starter", price: 0, upvotes: 77, description: "The official Supabase starter kit for Nuxt 3, featuring full user management.", tags: ["Nuxt", "Supabase", "Open Source"], timeSaved: "15 hours", url: "https://github.com/nuxt-modules/supabase" },
+            { id: "58", name: "MERN SaaS", price: 89, upvotes: 41, description: "A clean, affordable MERN stack foundation with role-based access control.", tags: ["Node.js", "React", "MongoDB"], timeSaved: "25 hours", url: "https://github.com/" },
+            { id: "59", name: "Horizon UI", price: 89, upvotes: 156, description: "Trend-setting admin dashboard and SaaS template available for React and Next.js.", tags: ["React", "Next.js", "Tailwind"], timeSaved: "30 hours", url: "https://horizon-ui.com/" },
+            { id: "60", name: "Volt Pro", price: 89, upvotes: 62, description: "Premium Bootstrap 5 admin dashboard featuring hundreds of UI components.", tags: ["Bootstrap", "HTML"], timeSaved: "20 hours", url: "https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard" },
+            { id: "61", name: "Clerk Next App", price: 0, upvotes: 210, description: "The definitive starting point for integrating Clerk authentication into Next.js.", tags: ["Next.js", "Auth"], timeSaved: "10 hours", url: "https://clerk.com/" },
+            { id: "62", name: "Convex Starter", price: 0, upvotes: 94, description: "Modern reactive backend template providing instant database synchronization.", tags: ["React", "Convex", "Serverless"], timeSaved: "15 hours", url: "https://www.convex.dev/" },
+            { id: "63", name: "FastAPI React", price: 0, upvotes: 125, description: "Cookiecutter template combining Python FastAPI backends with React frontends.", tags: ["Python", "React", "Open Source"], timeSaved: "30 hours", url: "https://github.com/tiangolo/full-stack-fastapi-postgresql" },
+            { id: "64", name: "RubySaaS Starter", price: 199, upvotes: 38, description: "A modular Rails application optimized for immediate deployment on Render or Heroku.", tags: ["Ruby on Rails", "Stripe"], timeSaved: "45 hours", url: "https://rubyonrails.org/" },
+            { id: "65", name: "Adonis SaaS", price: 0, upvotes: 42, description: "Node.js framework template for developers who love the MVC pattern of Laravel.", tags: ["Node.js", "AdonisJS"], timeSaved: "25 hours", url: "https://adonisjs.com/" },
+            { id: "66", name: "Amplify SaaS", price: 0, upvotes: 105, description: "AWS-backed template handling Cognito auth, AppSync GraphQL, and DynamoDB.", tags: ["AWS", "React", "Serverless"], timeSaved: "40 hours", url: "https://aws.amazon.com/amplify/" },
+            { id: "67", name: "Vuexy", price: 35, upvotes: 310, description: "The best-selling Vue.js admin template packed with enterprise-ready app views.", tags: ["Vue", "Admin"], timeSaved: "50 hours", url: "https://themeforest.net/item/vuexy-vuejs-html-laravel-admin-dashboard-template/23328599" },
+            { id: "68", name: "TailAdmin", price: 0, upvotes: 180, description: "Free and open-source Tailwind CSS admin dashboard template for SaaS analytics.", tags: ["Tailwind", "Alpine.js", "Open Source"], timeSaved: "15 hours", url: "https://tailadmin.com/" },
+            { id: "69", name: "SvelteKit Auth", price: 0, upvotes: 55, description: "Minimalist SvelteKit starting point heavily optimized for secure session management.", tags: ["SvelteKit", "Auth"], timeSaved: "10 hours", url: "https://kit.svelte.dev/" },
+            { id: "70", name: "Rust Actix Web", price: 0, upvotes: 82, description: "Ultra-high performance Rust backend template paired with a Yew frontend.", tags: ["Rust", "WebAssembly", "Open Source"], timeSaved: "35 hours", url: "https://actix.rs/" }
+        ];
+
+        // State Tracking variables
+        let activeFilter = 'all';
+        let searchQuery = '';
+        let currentSort = 'default';
+        let userUpvotes = JSON.parse(localStorage.getItem('hub_upvotes')) || [];
+
+        const grid = document.getElementById('directory-grid');
+        const noResults = document.getElementById('no-results');
+
+        function renderGrid() {
+            let data = boilerplates.filter(item => {
+                const matchesFilter = activeFilter === 'all' || item.tags.includes(activeFilter);
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery) || item.tags.some(t => t.toLowerCase().includes(searchQuery));
+                return matchesFilter && matchesSearch;
+            });
+
+            if (currentSort === 'price-low') data.sort((a, b) => a.price - b.price);
+            else if (currentSort === 'price-high') data.sort((a, b) => b.price - a.price);
+
+            grid.innerHTML = '';
+            if (data.length === 0) { noResults.classList.remove('hidden'); return;
+            noResults.classList.add('hidden');
+
+            data.forEach((bp) => {
+                const isUpvoted = userUpvotes.includes(bp.id);
+                const displayUpvotes = bp.upvotes + (isUpvoted ? 1 : 0);
                 const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');
 
                 const card = `
