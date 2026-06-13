@@ -38,7 +38,7 @@
         </div>
     </nav>
 
-    <header class="relative py-16 md:py-20 px-6 text-center border-b border-gray-900 bg-black/40">
+        <header class="relative py-16 md:py-20 px-6 text-center border-b border-gray-900 bg-black/40">
         <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="max-w-4xl mx-auto relative z-10">
             <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white">
@@ -47,9 +47,19 @@
             <p class="text-base md:text-lg text-gray-400 mb-8 max-w-xl mx-auto">
                 Skip weeks of setup. Compare and find the ultimate codebase template for your startup.
             </p>
+            
             <div class="relative max-w-lg mx-auto mb-6">
                 <input type="text" id="searchInput" placeholder="Search frameworks, features, or names..." class="w-full px-5 py-3.5 rounded-xl bg-gray-950 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all shadow-2xl text-sm">
             </div>
+
+            <div class="max-w-lg mx-auto mb-8 bg-gray-900/50 p-4 rounded-xl border border-gray-800/50 backdrop-blur-sm flex flex-col gap-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono text-gray-400 tracking-widest">PRICE LIMIT</span>
+                    <span class="text-xs font-mono text-cyan-400 font-bold bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-md shadow-[0_0_10px_rgba(34,211,238,0.1)]">MAX: $<span id="budgetValue">500</span></span>
+                </div>
+                <input type="range" id="budgetRange" min="0" max="500" value="500" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-cyan-500 hover:accent-cyan-400 transition-all">
+            </div>
+
             <div class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto" id="filterContainer">
                 <button class="filter-btn active bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all" data-filter="all">ALL</button>
                 <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="Next.js">NEXT.JS</button>
@@ -58,7 +68,7 @@
                 <button class="filter-btn bg-gray-900 border border-gray-800 text-gray-400 text-xs px-3 py-1.5 rounded-full font-mono transition-all hover:border-gray-700" data-filter="AI">AI-READY</button>
             </div>
         </div>
-    </header>
+        </header>
 
     <main class="max-w-7xl mx-auto p-6 md:p-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="directory-grid"></div>
@@ -160,11 +170,12 @@
             { id: "70", name: "Rust Actix Web", price: 0, upvotes: 82, description: "Ultra-high performance Rust backend template paired with a Yew frontend.", tags: ["Rust", "WebAssembly", "Open Source"], timeSaved: "35 hours", url: "https://actix.rs/" }
         ];
 
+                // State Tracking variables
         let activeFilter = 'all';
         let searchQuery = '';
         let currentSort = 'default';
+        let currentBudget = 500; // NEW: Tracks the slider value
         
-        // Bulletproof local storage safety check
         let userUpvotes = [];
         try {
             userUpvotes = JSON.parse(localStorage.getItem('hub_upvotes'));
@@ -180,7 +191,9 @@
             let data = boilerplates.filter(item => {
                 const matchesFilter = activeFilter === 'all' || item.tags.includes(activeFilter);
                 const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery) || item.tags.some(t => t.toLowerCase().includes(searchQuery));
-                return matchesFilter && matchesSearch;
+                const matchesBudget = item.price <= currentBudget; // NEW: Filters out expensive tools
+                
+                return matchesFilter && matchesSearch && matchesBudget;
             });
 
             if (currentSort === 'price-low') data.sort((a, b) => a.price - b.price);
@@ -194,7 +207,7 @@
                 const isUpvoted = userUpvotes.includes(bp.id);
                 const displayUpvotes = bp.upvotes + (isUpvoted ? 1 : 0);
                 const tagsHtml = bp.tags.map(tag => `<span class="bg-gray-950 text-gray-400 border border-gray-800 text-[10px] font-mono px-2 py-1 rounded">${tag.toUpperCase()}</span>`).join('');
-     
+
                 const card = `
                 <div class="bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-800 p-5 hover:border-cyan-500/50 hover:shadow-[0_0_25px_rgba(34,211,238,0.05)] transition-all duration-300 animate-fade-in flex flex-col h-full relative group">
                     <div class="flex justify-between items-start mb-3">
@@ -217,6 +230,13 @@
                 grid.innerHTML += card;
             });
         }
+
+        // NEW: Event listener to make the slider work live
+        document.getElementById('budgetRange').addEventListener('input', (e) => { 
+            currentBudget = parseInt(e.target.value);
+            document.getElementById('budgetValue').innerText = currentBudget;
+            renderGrid(); 
+        });
 
         document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderGrid(); });
         document.getElementById('sortSelect').addEventListener('change', (e) => { currentSort = e.target.value; renderGrid(); });
@@ -270,5 +290,6 @@
 
         renderGrid();
     </script>
+    
 </body>
 </html>
